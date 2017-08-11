@@ -10,7 +10,7 @@ module PubSub
                   :regions
 
 
-    SUPPORTED_REGIONS = %w(us-east-1 us-west-1 eu-west-1 ap-southeast-1)
+    SUPPORTED_REGIONS = %w(us-east-1 us-west-1 eu-west-1 ap-southeast-1 ap-southeast-2)
 
     def initialize
       @subscriptions = {}
@@ -58,7 +58,7 @@ module PubSub
     # Configure AWS credentials and region. Omit (nil) any of the parameters to use environment defaults
     def aws(key: ENV['AWS_ACCESS_KEY_ID'],
         secret: ENV['AWS_SECRET_ACCESS_KEY'],
-        regions: ['us-east-1'])
+        regions: ['ap-southeast-2'])
       raise(ArgumentError, "Invalid region(s): #{regions-ALLOWED_REGIONS}") if (regions-SUPPORTED_REGIONS).present?
       raise(ArgumentError, "Only 1 region at a time is currently supported") if regions.size > 1
       @regions = regions
