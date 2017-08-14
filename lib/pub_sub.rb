@@ -43,7 +43,9 @@ module PubSub
     # When in development or testing, we want to use our own personalized
     # queues. Using `development` would cause conflicts with other developers.
     def env_suffix
-      if %w(development test).include?(rails_env)
+      if ENV['STACK_ENV']
+        ENV['STACK_ENV']
+      elsif %w(development test).include?(rails_env)
         `whoami`.strip
       else
         rails_env
@@ -52,7 +54,7 @@ module PubSub
 
     def rails_env
       return Rails.env if defined?(Rails)
-      ENV['STACK_ENV'] || ENV['RAILS_ENV'] || ENV['RACK_ENV'] || 'development'
+      ENV['RAILS_ENV'] || ENV['RACK_ENV'] || 'development'
     end
 
     def report_error(e, extra_message = nil)
