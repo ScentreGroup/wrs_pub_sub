@@ -52,7 +52,7 @@ module PubSub
 
     def rails_env
       return Rails.env if defined?(Rails)
-      ENV['RAILS_ENV'] || ENV['RACK_ENV'] || 'development'
+      ENV['STACK_ENV'] || ENV['RAILS_ENV'] || ENV['RACK_ENV'] || 'development'
     end
 
     def report_error(e, extra_message = nil)
