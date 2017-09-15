@@ -37,7 +37,7 @@ module PubSub
 
     def service_identifier(service_name = nil)
       service_name ||= PubSub.config.service_name
-      "#{service_name}-service-#{env_suffix}"
+      "#{env_suffix}-wrs-#{service_name}-service"
     end
 
     # When in development or testing, we want to use our own personalized
