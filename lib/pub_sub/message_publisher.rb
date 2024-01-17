@@ -5,8 +5,11 @@ module PubSub
     end
 
     def message_type
-      klass = self.class.name
-      klass.replace(klass.scan(/[A-Z][a-z]*/).join('_').downcase)
+      @message_type ||=
+        begin
+          klass = self.class.name.dup
+          klass.replace(klass.scan(/[A-Z][a-z]*/).join('_').downcase)
+        end
     end
 
     def message_json
